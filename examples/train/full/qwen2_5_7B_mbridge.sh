@@ -4,9 +4,9 @@ export WANDB_MODE="online"
 export WANDB_LOG_INTERVAL="10"
 
 PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True' \
-CUDA_VISIBLE_DEVICES=0,1,2,3 \
+CUDA_VISIBLE_DEVICES=0,1 \
 NODE_RANK=0 \
-NPROC_PER_NODE=4 \
+NPROC_PER_NODE=2 \
 megatron sft \
     --model Qwen/Qwen2.5-7B-Instruct \
     --load_safetensors true \
@@ -19,7 +19,7 @@ megatron sft \
     --pipeline_model_parallel_size 1 \
     --sequence_parallel true \
     --packing true \
-    --micro_batch_size 4 \
+    --micro_batch_size 2 \
     --global_batch_size 8 \
     --recompute_granularity full \
     --recompute_method uniform \
